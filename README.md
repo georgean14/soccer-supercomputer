@@ -1,5 +1,20 @@
 # soccer-supercomputer
-Opening
+
+A predictive model for Premier League matches using poisson distribution and maximum likelihood estimation(MLE)
+
+Technical Details:
+
+Language: C++
+Algorithms: MLE using gradient descent
+Data: CSV sourced from https://www.football-data.co.uk/
+
+Limitations and future improvements:
+
+Does not account for injuries, weather, or scheduling(how compact the team's schedule is). Additionally, time decay is not implemented, so games early on in the season are weighted just as highly as recent games. 
+
+The reliance on poisson distribution assumes goals are independent, which is not true. Games may change depending on the scoreline, time left, where the team is in the table, and also the opponent. This oversimplifies many matches.
+
+-----------------------Techincal Explanation-----------------------
 
 Each team consists of two variables:
 
@@ -61,4 +76,8 @@ gradient[H] += residue_home
 
 After all 380 games:
 update: params += learning_rate * gradient
+
 Keep one team’s attack to 0
+Keep one team’s defense to 0
+
+(to prevent the model from drifting,since adding the same value to everyone's attack chnages nothing)
